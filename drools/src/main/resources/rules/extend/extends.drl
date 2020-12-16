@@ -1,0 +1,50 @@
+package rules.extend
+
+import com.gtop.work.demo.student.Student
+import org.drools.core.WorkingMemory
+import org.drools.core.definitions
+
+rule "rule_1"
+    when
+        Student(age > 10)
+    then
+        System.out.println("规则[rule_1]触发");
+end
+
+// 规则2继承了规则1，但只会继承LHS部分
+rule "rule_2" extends "rule_1"
+    when
+        Student(age < 20)
+    then
+        System.out.println("规则[rule_2]触发");
+end
+
+rule "rule_halt"
+    when
+    then
+        System.out.println("规则[rule_halt]触发...");
+        // drools为内置对象，halt会立即终止后面所有规则的执行
+        drools.halt();
+end
+
+rule "rule_halt2"
+    when
+    then
+        // 规则rule_halt导致此不会被执行
+        System.out.println("规则[rule_halt2]触发...");
+end
+
+rule "rule_get_working_memory"
+    when
+    then
+        WorkingMemory workingMemory = drools.getWorkingMemory();
+        System.out.println(workingMemory.getAgenda());
+end
+
+rule "rule_get_rule"
+    when
+    then
+        // 获得当前规则对象
+        org.drools.core.definitions.rule.impl.RuleImpl rule = drools.getRule();
+        System.out.println(rule);
+end

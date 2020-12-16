@@ -1,0 +1,15 @@
+package rules.querys
+
+import com.gtop.work.demo.student.Student
+
+function String sayHello(String name) {
+    return "Hello " + name;
+}
+
+rule "rule_function"
+    when
+        stu: Student(age > 10)
+    then
+        String result = sayHello(stu.getName());
+        System.out.println("调用sayHello，获得返回结果：" + result);
+end

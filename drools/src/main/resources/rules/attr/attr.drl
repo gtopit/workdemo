@@ -1,0 +1,141 @@
+package rules.attr
+
+import com.gtop.work.demo.student.Student
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+
+rule "rule_delete_10_year_old"
+    // 规则执行优先级，默认为0，优先级相同的情况下，按照文件规则编写顺序执行
+    salience 10
+    when
+        // 用于规则体LHS部分，返回一个Boolean类型值
+        eval(true) // 返回true
+    then
+        System.out.println("规则[rule_delete_10_year_old]触发...");
+end
+
+rule "rule_dialect"
+    salience 20
+    // 方言有 mvel 和 java 两种
+    // mvel 是一种基于Java语法的表达式语言，避免使用
+    dialect "java"
+    when
+        eval(true) // 返回true
+    then
+        System.out.println("规则[rule_dialect]触发...");
+end
+
+rule "rule_disabled"
+    // 不允许规则触发
+    enabled false
+    when
+        eval(true) // 返回true
+    then
+        System.out.println("规则[rule_disabled]触发...");
+end
+
+rule "rule_no_loop"
+    // 防止死循环
+    no-loop true
+    when
+        stu: Student(age == 10)
+    then
+        System.out.println("规则[rule_no_loop]触发...");
+    modify(stu){
+        setAge(10)
+    }
+end
+
+rule "rule_activation_group_1"
+    // 激活分组，取值为string类型，具有相同分组名称的规则只能有一个规则被触发
+    activation-group "mygroup"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_activation_group_1]触发...");
+end
+
+rule "rule_activation_group_2"
+    // 激活分组，取值为string类型，具有相同分组名称的规则只能有一个规则被触发
+    activation-group "mygroup"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_activation_group_2]触发...");
+end
+
+
+rule "rule_agenda_group_1"
+    // 议程分组，取值为string类型，只有获得焦点的组中的规则才会被触发
+    agenda-group "myagenda1"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_agenda_group_1]触发...");
+end
+
+rule "rule_agenda_group_2"
+    // 激活分组，取值为string类型，只有获得焦点的组中的规则才会被触发
+    agenda-group "myagenda1"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_agenda_group_2]触发...");
+end
+
+rule "rule_agenda_group_3"
+    // 自动获取焦点
+    auto-focus true
+    // 议程分组，取值为string类型，只有获得焦点的组中的规则才会被触发
+    agenda-group "myagenda2"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_agenda_group_3]触发...");
+end
+
+rule "rule_agenda_group_4"
+    // 激活分组，取值为string类型，只有获得焦点的组中的规则才会被触发
+    agenda-group "myagenda2"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_agenda_group_4]触发...");
+end
+
+rule "rule_timer"
+    // 定时器，参数1表示10秒后执行，参数2表示每3秒执行一次
+    timer (10s 3s)
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_timer]触发...");
+end
+
+rule "rule_timer_cron"
+    // 定时器，使用标准的unix cron表达式
+    timer(cron: 0/2 * * * * ?)
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_timer_cron]触发...");
+end
+
+rule "rule_date_effective"
+    // 规则的生效时间（当前时间大于date-effective才生效），默认格式 dd-MM-yyyy，也可以自定义格式
+    date-effective "2020-12-12 10:00"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_date_effective]触发，触发时间：" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+end
+
+rule "rule_date_expires"
+    // 规则的生效时间（当前时间小于date-expires才生效），默认格式 dd-MM-yyyy，也可以自定义格式
+    date-expires "2020-12-14 10:00"
+    when
+        eval(true)
+    then
+        System.out.println("规则[rule_date_expires]触发，触发时间：" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+end

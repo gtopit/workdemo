@@ -1,0 +1,7 @@
+package rules.spring
+
+rule "Hello Spring"
+    when
+    then
+        System.out.println("Hello Spring!");
+end

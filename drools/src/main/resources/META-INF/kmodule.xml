@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <!-- packages为resources目录下对应的.drl文件目录 -->
+    <kbase packages="rules.helloworld">
+        <ksession name="HelloWorldKS"/>
+    </kbase>
+    <kbase name="StateSalienceKB" packages="rules.state">
+        <ksession name="StateSalienceKS"/>
+    </kbase>
+    <kbase packages="rules.operator">
+        <ksession name="ComparisonOperatorKS"/>
+    </kbase>
+    <kbase packages="rules.student">
+        <ksession name="StudentKS"/>
+    </kbase>
+    <kbase packages="rules.attr">
+        <ksession name="AttrKS"/>
+    </kbase>
+    <kbase packages="rules.querys">
+        <ksession name="QueryKS"/>
+    </kbase>
+</kmodule>

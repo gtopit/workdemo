@@ -1,0 +1,26 @@
+package rules.helloworld
+
+// 包装类型时，修改只对当前规则有效
+global java.util.List list
+
+import com.gtop.work.demo.hello.HelloWorldExample.Message;
+
+rule "Hello World"
+    when
+        // m为Message的绑定对象，即代表Message，同理msg代表message
+        m : Message( status == Message.HELLO, msg : message )
+    then
+        System.out.println( msg );
+//        modify ( m ) { setMessage( "Goodbyte cruel world" ),
+//                       setStatus( Message.GOODBYE ) };
+    modify ( m ) { message = "Goodbye cruel world",
+                   status = Message.GOODBYE };
+end
+
+rule "Good Bye"
+    dialect "java"
+    when
+        Message( status == Message.GOODBYE, message : message )
+    then
+        System.out.println( message );
+end

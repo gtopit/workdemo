@@ -1,0 +1,13 @@
+package rules.querys
+
+import com.gtop.work.demo.student.Student
+
+// 提供查询working memory中符合约束条件的Fact对象的简单方法，仅包含规则文件中的LHS部分
+query "query_student"
+    stu: Student(age == 20)
+end
+
+
+query "query_student2"(String sname)
+    stu: Student(age > 10 && name == sname)
+end

@@ -1,0 +1,50 @@
+package rules.student
+
+import com.gtop.work.demo.student.Student
+
+
+rule "rule_delete_10_year_old"
+    // 规则执行优先级，默认为0，优先级相同的情况下，按照文件规则编写顺序执行
+    salience 10
+    when
+        stu: Student(age == 10)
+    then
+        System.out.println("规则[rule_delete_10_year_old]触发...");
+        // 从工作内存删除fact
+        retract(stu)
+end
+
+rule "rule_equals_10_year_old"
+    when
+        stu: Student(age == 10)
+    then
+        System.out.println("规则[rule_equals_10_year_old]触发...");
+        Student s = new Student();
+        s.setAge(8);
+        insert(s);
+end
+
+rule "rule_under_10_year_old"
+    when
+        stu: Student(age < 10)
+    then
+        System.out.println("规则[rule_under_10_year_old]触发...");
+        stu.setAge(15);
+        update(stu);
+end
+
+rule "rule_between_10_and_20_year_old"
+    when
+        stu: Student(age > 10 && age < 20)
+    then
+        System.out.println("规则[rule_between_10_and_20_year_old]触发...");
+        stu.setAge(22);
+        update(stu)
+end
+
+rule "rule_beyong_20_year_old"
+    when
+        stu: Student(age > 20)
+    then
+        System.out.println("规则[rule_beyong_20_year_old]触发...");
+end

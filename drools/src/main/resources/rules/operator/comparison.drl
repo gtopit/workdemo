@@ -1,0 +1,48 @@
+package rules.operator
+
+import com.gtop.work.demo.operator.ComparisonOperatorEntity
+
+
+rule "rule_contains"
+    when
+        ComparisonOperatorEntity(n: name contains "张三")
+    then
+        System.out.println("触发[contains]规则...");
+end
+
+rule "rule_not_contains"
+    when
+        // 两个条件以上默认 and
+        ComparisonOperatorEntity(n: name not contains "张三")
+    then
+        System.out.println("触发[not contains]规则...");
+end
+
+rule "rule_memberOf"
+    when
+        ComparisonOperatorEntity(n: name memberOf list)
+    then
+        System.out.println("触发[memberOf]规则...");
+end
+
+rule "rule_not_memberOf"
+    when
+        ComparisonOperatorEntity(n: name not memberOf list)
+    then
+        System.out.println("触发[not memberOf]规则...");
+end
+
+rule "rule_matches"
+    when
+        ComparisonOperatorEntity(n: name matches "张.*")
+    then
+        System.out.println("触发[matches]规则...");
+end
+
+rule "rule_not_matches"
+    when
+        // 正则表达式
+        ComparisonOperatorEntity(n: name not matches "张.*")
+    then
+        System.out.println("触发[not matches]规则...");
+end

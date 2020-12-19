@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.gtop.com/schema/gtop"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.gtop.com/schema/gtop"
+            elementFormDefault="qualified">
+    <xsd:element name="gtopTag">
+        <xsd:complexType>
+            <xsd:attribute name ="id" type = "xsd:string"/>
+            <xsd:attribute name ="member" type = "xsd:string"/>
+            <xsd:attribute name ="description" type = "xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

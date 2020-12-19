@@ -1,0 +1,21 @@
+<body>
+<div id="msg"></div>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    var socket = new WebSocket("ws://localhost:8080/websocket/vehicleTrack");
+    socket.onopen = function() {
+        socket.send("发送数据");
+        console.log("数据发送中...");
+    };
+    socket.onmessage = function (evt){
+        var received_msg = evt.data;
+        $("#msg").append(received_msg+'<br>');
+        console.log("数据已接收..."+received_msg);
+    };
+
+    socket.onclose = function(){
+        // 关闭 websocket
+        console.log("连接已关闭...");
+    };
+</script>
+</body>

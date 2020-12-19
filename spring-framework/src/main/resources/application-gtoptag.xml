@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:gtop="http://www.gtop.com/schema/gtop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.gtop.com/schema/gtop  http://www.gtop.com/schema/gtop/gtoptag.xsd">
+
+    <gtop:gtopTag id="gtopTag" member="faker" description="forever love" ></gtop:gtopTag>
+
+</beans>

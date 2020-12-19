@@ -2,7 +2,6 @@ package com.gtop.work.demo.operator;
 
 import com.gtop.work.demo.student.Student;
 import org.drools.core.base.RuleNameEqualsAgendaFilter;
-import org.drools.core.base.RuleNameStartsWithAgendaFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

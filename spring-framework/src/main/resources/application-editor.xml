@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.gtop.work.demo.spring.self.editor.Student">
+        <property name="name" value="faker"></property>
+        <property name="address" value="广东省_广州市_番禺区"></property>
+    </bean>
+
+    <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="com.gtop.work.demo.spring.self.editor.AddressPropertyEditorRegistrar"></bean>
+            </list>
+        </property>
+    </bean>-->
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="com.gtop.work.demo.spring.self.editor.Address">
+                    <value>com.gtop.work.demo.spring.self.editor.AddressPropertyEditor</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

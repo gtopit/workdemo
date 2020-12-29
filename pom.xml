@@ -25,16 +25,19 @@
         <module>drools-decisiontable</module>
         <module>web-socket</module>
 		<module>spring-framework</module>
-	</modules>
+        <module>gateway</module>
+		<module>spring-boot</module>
+		<module>feign</module>
+    </modules>
 
 	<properties>
 		<lombok.version>1.18.4</lombok.version>
 		<junit.version>4.12</junit.version>
-		<!--<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
-		<spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>-->
+		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+		<spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
 	</properties>
 
-	<!--<dependencyManagement>
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -53,7 +56,7 @@
 			</dependency>
 
 		</dependencies>
-	</dependencyManagement>-->
+	</dependencyManagement>
 
 	<dependencies>
 

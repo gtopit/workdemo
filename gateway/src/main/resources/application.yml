@@ -1,0 +1,42 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: boot-service
+          uri: lb://boot-service
+          predicates:
+            - Path=/bootService/**
+          filters:
+            # 结合 predicates -Path=/bootService/** 解释，
+            # 比如前端请求 http://localhost:8888/bootService/test 则请求转发到boot-service服务，并且请求变为http://localhost:8888/boot-service/test
+            # StripPrefix=1表示从请求路径的开始位置，跳过1层路劲，即跳过/v1
+            - StripPrefix=1
+        - id: feign-service
+          uri: lb://feign-service
+          predicates:
+            - Path=/feignService/**
+          filters:
+            - StripPrefix=1
+
+        - id: web-socket
+          uri: lb:ws://web-socket
+          predicates:
+            - Path=/webSocket/**
+          filters:
+            - StripPrefix=1
+        - id: web-socket
+          uri: lb://web-socket
+          predicates:
+            - Path=/webHttp/**
+          filters:
+            - StripPrefix=1

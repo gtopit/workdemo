@@ -16,4 +16,6 @@ public class Person {
 
     private Integer salary;
 
+    private String username;
+
 }

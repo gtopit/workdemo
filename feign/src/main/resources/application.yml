@@ -1,0 +1,9 @@
+server:
+  port: 8880
+spring:
+  application:
+    name: feign-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848

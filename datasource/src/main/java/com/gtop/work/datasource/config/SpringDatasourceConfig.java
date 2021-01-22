@@ -24,14 +24,12 @@ import javax.sql.DataSource;
 public class SpringDatasourceConfig {
 
     @Bean(name = "springDatasource")
-    @Primary
     @ConfigurationProperties("spring.datasource")
     public DataSource springDatasource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean(name = "springSqlSessionFactory")
-    @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("springDatasource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource);
@@ -41,13 +39,11 @@ public class SpringDatasourceConfig {
     }
 
     @Bean(name = "springTransactionManager")
-    @Primary
     public DataSourceTransactionManager testTransactionManager(@Qualifier("springDatasource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean(name = "springSqlSessionTemplate")
-    @Primary
     public SqlSessionTemplate testSqlSessionTemplate(@Qualifier("springSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }

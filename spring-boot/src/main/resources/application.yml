@@ -1,6 +1,8 @@
 server:
   port: 8800
 spring:
+  profiles:
+    active: local
   application:
     name: boot-service
   cloud:

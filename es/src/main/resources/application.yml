@@ -1,0 +1,10 @@
+server:
+  port: 9900
+spring:
+  profiles:
+    active: local
+  application:
+    name: es-service
+  elasticsearch:
+    rest:
+      uris: http://192.168.233.3:9200

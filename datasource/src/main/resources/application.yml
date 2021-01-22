@@ -1,0 +1,7 @@
+server:
+  port: 9990
+spring:
+  profiles:
+    active: local
+  application:
+    name: datasource-service

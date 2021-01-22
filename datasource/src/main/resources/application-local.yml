@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    jdbc-url: jdbc:mysql://192.168.233.3:3306/testdb?setUnicode=true&characterEncoding=utf8
+    username: mysql
+    password: Gtop@2020
+
+second:
+  datasource:
+    jdbc-url: jdbc:mysql://192.168.233.3:3306/testdb2?setUnicode=true&characterEncoding=utf8
+    username: mysql
+    password: Gtop@2020
